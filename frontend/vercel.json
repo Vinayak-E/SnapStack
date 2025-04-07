@@ -1,12 +1,6 @@
 {
-    "build": {
-      "command": "npm run build",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "routes": [
-      { "handle": "filesystem" },
-      { "src": "/.*", "dest": "/" }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
     ]
   }
+  

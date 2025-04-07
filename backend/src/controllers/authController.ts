@@ -24,7 +24,7 @@ export const register = async (req: Request, res: Response) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expires = new Date(Date.now() + 10 * 60 * 1000); // OTP valid for 10 minutes
+    const expires = new Date(Date.now() + 10 * 60 * 1000); 
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -65,7 +65,7 @@ export const resendOtp = async (req: Request, res: Response) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expires = new Date(Date.now() + 10 * 60 * 1000); // OTP valid for 10 minutes
+    const expires = new Date(Date.now() + 10 * 60 * 1000); 
 
 
     tempUser.otp = otp;

@@ -742,19 +742,6 @@ const Dashboard = () => {
             </>
           )}
         </div>
-        
-        <div className="mt-16 mb-8 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 shadow-sm transition-colors duration-200">
-          <details className="text-gray-600 dark:text-gray-300">
-            <summary className="cursor-pointer font-medium">Keyboard shortcuts and tips</summary>
-            <div className="mt-3 ml-4 text-sm space-y-2">
-              <p>• Use <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 border rounded">←</kbd> and <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 border rounded">→</kbd> to navigate between pages</p>
-              <p>• Press <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 border rounded">Shift + U</kbd> to open the file selector</p>
-              <p>• Drag and drop images to rearrange their order</p>
-              <p>• Search is performed automatically as you type</p>
-              <p>• Dark mode follows your system preferences</p>
-            </div>
-          </details>
-        </div>
       </div>
     </div>
   );

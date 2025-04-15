@@ -32,7 +32,9 @@ export const resetPassword = (data: { token: string, password: string }) =>
   
   };
 export const uploadImages = (formData: FormData) => api.post('/images/upload', formData);
-export const getImages = () => api.get('/images');
+export const getImages = (page = 1, limit = 12, search = '', sort = 'newest') => {
+  return api.get(`/images?page=${page}&limit=${limit}&search=${search}&sort=${sort}`);
+};
 export const rearrangeImages = (orderedIds: string[]) => api.put('/images/rearrange', { orderedIds });
 export const editImage = (id: string, title: string) => api.put(`/images/${id}`, { title });
 export const deleteImage = (id: string) => api.delete(`/images/${id}`);

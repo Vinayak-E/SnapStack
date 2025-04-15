@@ -43,9 +43,9 @@ const Register = () => {
   };
 
   const validatePhone = (phone: string): string => {
-    const phoneRegex = /^\d{10,15}$/;
+    const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(phone.replace(/\D/g, ''))) {
-      return 'Please enter a valid phone number (10-15 digits)';
+      return 'Please enter a valid phone number (10 digit)';
     }
     return '';
   };

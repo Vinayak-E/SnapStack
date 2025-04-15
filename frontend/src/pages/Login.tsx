@@ -34,7 +34,7 @@ const Login = () => {
     return '';
   };
 
-  // Password validation - basic check for empty
+ 
   const validatePassword = (password :string) => {
     if (!password || password.trim() === '') {
       return 'Password is required';

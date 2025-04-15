@@ -48,8 +48,53 @@ export const uploadImages = [
 
 export const getImages = async (req: Request, res: Response) => {
   const userId = (req as any).user.id;
-  const images = await Image.find({ userId }).sort('order');
-  res.json(images);
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 12;
+  const search = (req.query.search as string) || '';
+  const sort = (req.query.sort as string) || 'newest';
+  
+  const query = {
+    userId,
+    ...(search ? { title: { $regex: search, $options: 'i' } } : {})
+  };
+  
+  try {
+    const totalImages = await Image.countDocuments(query);
+    const totalPages = Math.ceil(totalImages / limit);
+    
+    let sortConfig = {};
+    switch (sort) {
+      case 'newest':
+        sortConfig = { createdAt: -1 };
+        break;
+      case 'oldest':
+        sortConfig = { createdAt: 1 };
+        break;
+      case 'alphabetical':
+        sortConfig = { title: 1 };
+        break;
+      default:
+        sortConfig = { createdAt: -1 }; 
+    }
+    
+    const images = await Image.find(query)
+      .sort(sortConfig)
+      .skip((page - 1) * limit)
+      .limit(limit);
+    
+    res.json({
+      images,
+      pagination: {
+        totalImages,
+        totalPages,
+        currentPage: page,
+        limit
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    res.status(500).json({ message: 'Failed to fetch images' });
+  }
 };
 
 export const rearrangeImages = async (req: Request, res: Response) => {
